@@ -7,11 +7,20 @@ authors = [
     { name = "matthieu-couderc", email = "matthieu.couderc@fms-ea.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pydantic>=2.13.5",
+    "python-dotenv>=1.2.3",
+    "requests>=2.34.2",
+]
 
 [project.scripts]
-openweather = "openweather:main"
+openweather = "openweather.main:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.8",
+]
