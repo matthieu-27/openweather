@@ -92,13 +92,13 @@ def get_weather(city: str) -> OpenWeatherResponse:
     return OpenWeatherResponse.model_validate(response.json())
 
 
-def fc(fahrenheit):
-    return fahrenheit - 273.15
+def fc(fahrenheit: float) -> float:
+    return str(f"{fahrenheit - 273.15:.2f}")
 
 
 def main():
     for city in CITIES:
         report = get_weather(city)
         print(
-            f"City: {city} Forecast: {report.weather[0].description} with a wind at {report.wind.speed * 3.6:.2f}km/h, it will feel like {fc(report.main.feels_like):.2f}°C With a minimum of {fc(report.main.temp_min):.2f}°C and a maximum of {fc(report.main.temp_max):.2f}°C"
+            f"City: {city} Forecast: {report.weather[0].description} with a wind at {report.wind.speed * 3.6}km/h, it will feel like {fc(report.main.feels_like)}°C With a minimum of {fc(report.main.temp_min)}°C and a maximum of {fc(report.main.temp_max)}°C"
         )
